@@ -67,3 +67,12 @@
   .menu li:hover {
     background-color: #0099cc;
   }
+
+  @media screen and (min-width: 665px) {
+    .artykul {
+      display: flex;
+    }
+    .artykul p {
+      padding-left: 15px;
+    }
+  }
