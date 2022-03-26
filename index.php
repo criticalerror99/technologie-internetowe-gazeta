@@ -1,7 +1,15 @@
+<?php
+  require 'includes/mysql.php';
+
+  $query = $connect->prepare("SELECT `nazwa_szkoly` FROM `ustawienia`");
+  $query->execute();
+  $meter = $query->fetch();
+  $nazwa_szkoly = $meter['nazwa_szkoly'];
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<title>Nazwa szkoły - InfoKiosk</title>
+<title><?php echo($nazwa_szkoly);?> - InfoKiosk</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="styles.css">
 <meta charset="utf-8">
@@ -14,7 +22,7 @@
 <body onload="init()">
 
 <div class="header">
-  <h1>Nazwa szkoły</h1>
+  <h1><?php echo($nazwa_szkoly);?></h1>
   <p align="right" id="clock" onload="startTime()"></p>
   <p align="right" id="data" onload="readDate()"></p>
   <p align="right" id="imieniny" onload="printImieniny()"></p>
