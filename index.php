@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="styles.css">
 <meta charset="utf-8">
+
+<script src="./js/main.js"></script>
+<script src="./js/clock.js"></script>
+<script src="./js/imieniny.js"></script>
+
 </head>
-<body>
+<body onload="init()">
 
 <div class="header">
   <h1>Nazwa szkoły</h1>
-  <p align="right">10:00:00</p>
-  <p align="right">Dziś jest niedziela, 20 marca 2022.</p>
-  <p align="right">Imieniny obchodzą: </p>
+  <p align="right" id="clock" onload="startTime()"></p>
+  <p align="right" id="data" onload="readDate()"></p>
+  <p align="right" id="imieniny" onload="printImieniny()"></p>
 </div>
 
 <div class="row">
