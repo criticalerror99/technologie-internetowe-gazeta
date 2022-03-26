@@ -1,11 +1,12 @@
 <?php
   require 'includes/mysql.php';
 
-  $query = $connect->prepare("SELECT `nazwa_szkoly`, `kolor_glowny` FROM `ustawienia`");
+  $query = $connect->prepare("SELECT `nazwa_szkoly`, `kolor_glowny`, `komunikat` FROM `ustawienia`");
   $query->execute();
   $meter = $query->fetch();
   $nazwa_szkoly = $meter['nazwa_szkoly'];
   $header_bg = $meter['kolor_glowny'];
+  $komunikat = $meter['komunikat'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -35,6 +36,12 @@
   <p align="right" id="data" onload="readDate()"></p>
   <p align="right" id="imieniny" onload="printImieniny()"></p>
 </div>
+
+<?php
+    if(strlen($komunikat) > 1) {
+      echo("<div class='col-5'><h1>Ważna informacja</h1><p>$komunikat</p></div>");
+    }
+  ?>
 
 <div class="row">
   <div class="col-3 menu">

@@ -16,7 +16,15 @@
   .col-4 {
     margin-top: -15px;
     width: 80%;
-}
+  }
+
+  .col-5 {
+    margin-top: 1px;
+    width: 100%;
+    background: #c50000;
+    color: white;
+    text-align: center;
+  }
   
   html {
     font-family: "Lucida Sans", sans-serif;
@@ -68,6 +76,16 @@
     font-size: 12px;
     display: block;
   }
+
+  .col-5 p {
+    margin-top: -20px;
+  }
+
+  .col-5 h1 {
+    margin-top: 3px;
+  }
+
+
 
   @media screen and (min-width: 665px) {
     .artykul {
