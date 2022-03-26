@@ -1,10 +1,11 @@
 <?php
   require 'includes/mysql.php';
 
-  $query = $connect->prepare("SELECT `nazwa_szkoly` FROM `ustawienia`");
+  $query = $connect->prepare("SELECT `nazwa_szkoly`, `kolor_glowny` FROM `ustawienia`");
   $query->execute();
   $meter = $query->fetch();
   $nazwa_szkoly = $meter['nazwa_szkoly'];
+  $header_bg = $meter['kolor_glowny'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -17,11 +18,18 @@
 <script src="./js/main.js"></script>
 <script src="./js/clock.js"></script>
 <script src="./js/imieniny.js"></script>
-
 </head>
 <body onload="init()">
+<?php 
+  if(strlen($header_bg) > 6) { // sprawdzenie, czy w bazie znajduje się niestandardowy kolor tła dla górnej belki
+    echo("<div class='header' style='background-color:$header_bg;'>"); // pobranie koloru z bazy
+  }
+  else {
+    echo("<div class='header' style='background-color:seagreen;'>"); // standardowy kolor, gdy nie ma niestandardowego
+  }
+?>
 
-<div class="header">
+
   <h1><?php echo($nazwa_szkoly);?></h1>
   <p align="right" id="clock" onload="startTime()"></p>
   <p align="right" id="data" onload="readDate()"></p>
