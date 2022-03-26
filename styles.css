@@ -46,6 +46,11 @@
       margin-bottom: -15px;
   }
   
+  .header p#imieniny {
+    margin-top: 15px;
+    font-size: 11px;
+  }
+
   .menu li {
     padding: 8px;
     margin-bottom: 7px;
