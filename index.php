@@ -45,9 +45,27 @@
   </div>
 
   <div class="col-9">
-    <h1>Nagłówek</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit blandit neque a luctus. Sed ullamcorper lectus vel quam cursus lobortis. Vivamus congue erat ac eros dictum, eget aliquet dui efficitur. Duis ante eros, tincidunt vitae metus eu, dapibus elementum eros. Cras varius eleifend nulla, non suscipit justo auctor nec. Donec hendrerit orci magna. Ut mollis, magna sed maximus porttitor, tortor tellus euismod enim, sit amet facilisis felis risus sit amet odio. Maecenas varius id sem vitae maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent ornare interdum bibendum. Aenean ultrices ornare ipsum, vitae sagittis ipsum malesuada vel. Integer non interdum sapien, nec consectetur dui. Praesent elementum justo augue, eu iaculis magna pulvinar non. Nunc a convallis orci.</p>
-    <p>Curabitur ut nisl in massa ornare vehicula. Nam et mauris sit amet dui dictum suscipit id in dolor. Integer id ante et ligula accumsan euismod. Integer efficitur sem ac malesuada ornare. Proin ut nisl quis nisl vulputate convallis. Duis in tempus sem. Quisque sit amet dolor quis enim vestibulum accumsan et vel lacus. Integer ultricies, tortor et ornare pulvinar, neque elit posuere justo, at vestibulum mauris libero sollicitudin purus. Cras posuere neque ornare, consequat nulla non, pulvinar velit. Nunc erat libero, laoreet in enim in, fringilla dignissim mauris.</p>
+    <?php
+      $query = $connect->prepare("SELECT `naglowek`, `tekst`, `img` FROM `artykuly` ORDER BY `id` DESC LIMIT 1");
+      $query->execute();
+      $ilosc = $query->rowCount();
+      $meter = $query->fetch();
+      if($ilosc > 0) {
+        $naglowek = $meter['naglowek'];
+        $tekst = $meter['tekst'];
+        $img = $meter['img'];    
+        echo("<h1>" . $naglowek . "</h1><div class='artykul'>");
+        if(strlen($img) > 1) {
+          echo("<img src='$img' width='200' height='200'></img>");
+        }
+        echo('<p>' . $tekst . '</p>');
+      }
+      else {
+        echo("<h1>Brak artykułów w bazie danych</h1><div class='artykul'>
+        <p>W bazie danych nie znajduje się obecnie żaden artykuł. Stwórz nowy artykuł korzystając z panelu administracji.</p>");
+      }
+    ?>
+    </div>
   </div>
 </div>
 
