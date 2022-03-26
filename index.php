@@ -44,7 +44,7 @@
     </ul>
   </div>
 
-  <div class="col-9">
+  <div class="col-4">
     <?php
       $query = $connect->prepare("SELECT `naglowek`, `tekst`, `img` FROM `artykuly` ORDER BY `id` DESC LIMIT 1");
       $query->execute();
