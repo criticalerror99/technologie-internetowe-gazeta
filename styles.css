@@ -77,3 +77,18 @@
       padding-left: 15px;
     }
   }
+
+  @media screen and (max-width: 480px) {
+    .menu li {
+      font-size: 12px;
+      display: table-cell;
+      padding: 15px;
+    }
+    .col-3 {
+      padding: 1px;
+      float: none;
+    }
+    .col-9 {
+      padding: 1px;
+    }
+  }
