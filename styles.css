@@ -13,11 +13,9 @@
     padding: 15px;
   }
   
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
   .col-4 {
     margin-top: -15px;
-    width: 75%;
+    width: 80%;
 }
   
   html {
@@ -80,7 +78,7 @@
     }
   }
 
-  @media screen and (max-width: 760px) {
+  @media screen and (max-width: 949px) {
     .col-3 {
       float: none;
     }
