@@ -1,7 +1,7 @@
 <?php 
     $host = "localhost"; // adres IP bazy danych MySQL
     $dbname = "kiosk"; // nazwa bazy danych MySQL
-    $user = "root"; // u¿ytkownik bazy danych MySQL
-    $passwd = ""; // has³o do u¿ytkownika bazy danych MySQL
+    $user = "root"; // uï¿½ytkownik bazy danych MySQL
+    $passwd = ""; // hasï¿½o do uï¿½ytkownika bazy danych MySQL
     $connect=new PDO("mysql:host=$host;dbname=$dbname", $user, $passwd);
 ?>
