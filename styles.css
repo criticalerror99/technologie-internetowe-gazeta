@@ -105,4 +105,7 @@
     .col-3 {
       float: none;
     }
+    .artykul input[type="text"] {
+      line-height: 50px;
+    }
   }

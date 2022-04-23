@@ -138,7 +138,80 @@
                   echo("<img src='$img' width='200' height='200'></img>");
                 }
                 echo('<p>' . $tekst . '</p>');
+                break;
               }
+            }
+          }
+          case "e": {
+            if(!isLogged()) {
+              header("location:index.php");
+              break;
+            }
+            if(isset($_GET["art"])) {
+              $sql = "SELECT `naglowek`, `tekst`, `img` FROM `artykuly` WHERE id = " . $_GET["art"];
+              $query = $connect->prepare($sql);
+              $query->execute();
+              $ilosc = $query->rowCount();
+              $meter = $query->fetch();
+              if($ilosc > 0) {
+                $naglowek = $meter['naglowek'];
+                $tekst = $meter['tekst'];
+                $img = $meter['img'];    
+
+                $art = $_GET["art"];
+
+                echo("<h1>Edycja artykułu " . $naglowek . "</h1><div class='artykul'><p><form action='index.php?m=se&art=" . $_GET["art"] . "' method='post'><input type='text' name='head' value='" . $naglowek . "' size='40'></input><hr/><input type='text' value='" . $tekst . "'name='tekst' size='40' required><hr/><input type='text' placeholder='Link do obrazka (opcjonalne)' name='image' size='40'></input></p><a href='index.php?m=del&art=" . $art . "'>Usuń artykuł<br/><br/><button type='submit'>Wyślij</button></div>");
+
+              }
+            }
+            break;
+          }
+          case "se": {
+            if(!isLogged()) {
+              header("location:index.php");
+              break;
+            }
+            $new_art = $_POST["tekst"];
+            $new_img = $_POST["image"];
+            $head = $_POST["head"];
+            if(isset($_GET["art"])) {
+              $sql = "SELECT `id` FROM `artykuly` WHERE id = " . $_GET["art"];
+              $query = $connect->prepare($sql);
+              $query->execute();
+              $ilosc = $query->rowCount();
+              $meter = $query->fetch();
+              if($ilosc > 0) {
+                $art = $_GET["art"];
+                $sql = "UPDATE `artykuly` SET `naglowek` = '$head', `tekst` = '$new_art', `img` = '$new_img' WHERE id = $art";   
+                $query = $connect->prepare($sql);
+                $query->execute();
+                header("location:index.php?m=d&art=" . $art);
+                break;             
+              }
+              else {
+                header("location:index.php");
+                break;                
+              }
+            }
+          }
+          case "del": {
+            if(!isLogged()) {
+              header("location:index.php");
+              break;
+            }
+            if(isset($_GET["art"])) {
+              $sql = "DELETE FROM `artykuly` WHERE id = " . $_GET["art"];
+              $query = $connect->prepare($sql);
+              $query->execute();
+              $sql = "UPDATE `artykuly` SET id = id-1 WHERE id >" . $_GET["art"];
+              $query = $connect->prepare($sql);
+              $query->execute(); 
+              header("location:index.php?m=admin");
+              break;             
+            }
+            else {
+              header("location:index.php");
+              break;                
             }
           }
         }
