@@ -34,6 +34,11 @@
     color: #ffffff;
     padding: 15px;
   }
+
+  .header a {
+    color: white;
+    text-decoration: none;
+  }
   
   .menu ul {
     list-style-type: none;
