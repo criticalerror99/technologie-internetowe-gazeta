@@ -92,7 +92,9 @@
               foreach($query as $rec) {
                   $lista = $lista . '<a href="index.php?m=e&art=' . $rec['id'] . '">' . $rec['naglowek'] . '</a><br/>';
               }
+              echo("<h1>Panel administracyjny</h1><div class='artykul'><p>");
               echo($lista);
+              echo("</p></div>");
               break;
             }
           }
@@ -114,12 +116,13 @@
           case "arch": {
             $query = $connect->prepare("SELECT `id`, `naglowek` FROM `artykuly` ORDER BY `id` DESC");
             $query->execute();
-            $lista = "";
+            $lista = "<h1>Lista artykułów </h1><div class='artykul'><p>";
         
             foreach($query as $rec) {
                 $lista = $lista . '<a href="index.php?m=d&art=' . $rec['id'] . '">' . $rec['naglowek'] . '</a><br/>';
             }
             echo($lista);
+            echo("</p></div>");
             break;
           }
           case "d": {
