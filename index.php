@@ -163,7 +163,7 @@
 
                 $art = $_GET["art"];
 
-                echo("<h1>Edycja artykułu " . $naglowek . "</h1><div class='artykul'><p><form action='index.php?m=se&art=" . $_GET["art"] . "' method='post'><input type='text' name='head' value='" . $naglowek . "' size='40'></input><hr/><input type='text' value='" . $tekst . "'name='tekst' size='40' required><hr/><input type='text' placeholder='Link do obrazka (opcjonalne)' name='image' size='40'></input></p><a href='index.php?m=del&art=" . $art . "'>Usuń artykuł<br/><br/><button type='submit'>Wyślij</button></div>");
+                echo("<h1>Edycja artykułu " . $naglowek . "</h1><div class='artykul'><p><form action='index.php?m=se&art=" . $_GET["art"] . "' method='post'><input type='text' name='head' value='" . $naglowek . "' size='40'></input><hr/><input type='text' value='" . $tekst . "'name='tekst' size='40' required><hr/><input type='text' placeholder='Link do obrazka (opcjonalne)' name='image' value='" . $img . "'size='40'></input></p><a href='index.php?m=del&art=" . $art . "'>Usuń artykuł<br/><br/><button type='submit'>Wyślij</button></div>");
 
               }
             }
