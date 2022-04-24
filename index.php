@@ -197,6 +197,33 @@
               }
             }
           }
+          case "add": {
+            if(!isLogged()) {
+              header("location:index.php");
+              break;
+            }
+            echo("<h1>Tworzenie nowego artykułu</h1><div class='artykul'><p><form action='index.php?m=sa' method='post'><input type='text' name='head' placeholder='Nagłówek' size='40'></input><hr/><input type='text' placeholder='Treść' name='tekst' size='40' required><hr/><input type='text' placeholder='Link do obrazka (opcjonalne)' name='image' size='40'></input></p><br/><button type='submit'>Wyślij</button></div>");
+            break;
+          }
+          case "sa": {
+            if(!isLogged()) {
+              header("location:index.php");
+              break;
+            }
+            $art = $_POST["tekst"];
+            $img = $_POST["image"];
+            $head = $_POST["head"];
+            $sql = "SELECT MAX(`id`) AS `max_id` FROM `artykuly`";
+              $query = $connect->prepare($sql);
+              $query->execute();
+              $row = $query->fetch();
+              $max = $row["max_id"];
+              $sql = "INSERT INTO `artykuly` (id, naglowek, tekst, img) VALUES (" . $max+1 . ", '" . $head . "', '" . $art . "', '" . $img . "')";   
+              $query = $connect->prepare($sql);
+              $query->execute();
+              header("location:index.php?m=d&art=" . $max+1);
+              break;             
+          }
           case "del": {
             if(!isLogged()) {
               header("location:index.php");
