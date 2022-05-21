@@ -94,9 +94,30 @@
               }
               echo("<h1>Panel administracyjny</h1><div class='artykul'><p>");
               echo($lista);
-              echo("</p></div>");
+
+              $query = $connect->prepare("SELECT `nazwa_szkoly`, `komunikat` FROM `ustawienia`");
+              $query->execute();
+              $info = $query->fetch();
+              $uczelnia = $info['nazwa_szkoly'];
+              $komunikat = $info['komunikat'];
+
+              echo("<hr/><p><form action='index.php?m=settingse' method='post'><input type='text' name='uname' placeholder='Nazwa uczelni' value='" . $uczelnia . "' size='40' required></input><hr/><input type='text' placeholder='Kolor nagłówka (pusty=domyślny, format: #FF00FF)'name='kolor' size='40'></input><hr/><input type='text' name='info' placeholder='Ważna informacja' value='" . $komunikat . "' size='40'></input><hr/></p><button type='submit'>Zapisz</button></div>");
               break;
             }
+          }
+          case "settingse": {
+            if(!isLogged()) {
+              header("location:index.php");
+              break;
+            }
+            $uname = $_POST["uname"];
+            $kolor = $_POST["kolor"];
+            $komunikat = $_POST["info"];
+            $sql = "UPDATE `ustawienia` SET `nazwa_szkoly` = '$uname', `kolor_glowny` = '$kolor', `komunikat` = '$komunikat'";   
+            $query = $connect->prepare($sql);
+            $query->execute();
+            header("location:index.php?m=admin" . $art);
+            break;
           }
           case "log": {
             $log = $_POST["ulog"];
