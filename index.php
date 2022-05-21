@@ -94,6 +94,7 @@
               }
               echo("<h1>Panel administracyjny</h1><div class='artykul'><p>");
               echo($lista);
+              echo('<br/><b><a href="index.php?m=add">Nowy artykuł</a></b>');
 
               $query = $connect->prepare("SELECT `nazwa_szkoly`, `komunikat` FROM `ustawienia`");
               $query->execute();
